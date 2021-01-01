@@ -7,6 +7,7 @@
 #include <map>
 #include "example_classes.h"
 #include "Array.h"
+#include "DynamicArray.h"
 
 using namespace std;
 
@@ -63,14 +64,23 @@ int main()
         }
         cout << arr.toString() << endl;
         cout << arr[0] << endl; 
-        cout << "Using assignment operator to make a copy of that array. " << endl; 
-        Array<int> arr2 = arr; 
+        cout << "Using copy constructure to make a deepcopy of that array. " << endl; 
+        Array<int> arr2 = arr;
+        Array<int> arr3 = arr;
         cout << arr2.toString() << endl; 
         cout << "Mutating the copied array and then print both of them out. " << endl; 
         arr2[0] = -1; 
         cout << arr.toString() << endl; 
         cout << arr2.toString() << endl; 
+    }
 
+    {
+        cout << "Ok, now we are going to start messing with the dynamic array. " << endl; 
+        DynamicArray<int> arr{ 2 };
+        for (int II = 0; II < arr.size(); II++)
+        {
+            arr.append(II);
+        }
     }
 }
 
