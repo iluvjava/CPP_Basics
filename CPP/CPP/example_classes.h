@@ -17,19 +17,3 @@ namespace ExampleClasses // put thing under namespace for imports.
 
 }
 
-namespace DataStructureClasses
-{
-	template <class T> class ArrayList
-	{
-		unsigned int size; 
-		T data[];
-		public: 
-			unsigned int size();
-			void append(T);
-			T get(int);
-			void insert(T, int);
-			T remove_at(int);
-	};
-}
-
-

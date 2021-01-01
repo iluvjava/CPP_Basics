@@ -31,31 +31,6 @@ std::string ExampleClasses::Rectangle::toString()
 }
 
 
-template <class T> 
-unsigned int DataStructureClasses::ArrayList<T>::size()
-{
 
-}
 
-template<class T>
-void DataStructureClasses::ArrayList<T>::append(T)
-{
 
-}
-
-template<class T>
-T DataStructureClasses::ArrayList<T>::get(int)
-{
-	return T();
-}
-
-template<class T>
-void DataStructureClasses::ArrayList<T>::insert(T, int)
-{
-}
-
-template<class T>
-T DataStructureClasses::ArrayList<T>::remove_at(int)
-{
-	return T();
-}

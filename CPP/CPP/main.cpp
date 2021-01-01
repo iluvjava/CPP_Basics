@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "./example_classes.h"
+#include "example_classes.h"
+#include "Array.h"
 
 using namespace std;
-using namespace ExampleClasses;
 
 
 void test();
@@ -17,9 +17,10 @@ map<string, int>* another_counter(string&);
 template<class T> T add_2_things(T, T);
 
 
-
 int main()
-{   
+{
+    using namespace ExampleClasses;
+    using namespace DataStructureClasses;
     test();
     {
         cout << "--------------------" << endl;
@@ -51,6 +52,25 @@ int main()
         cout << add_2_things<float>(1.4, 5.0) << endl;
         cout << add_2_things<int>(1, 3) << endl; 
         cout << add_2_things<string>("woah, ", "That is cool") << endl; 
+    }
+
+    {
+        cout << "Let's use a java style array. " << endl; 
+        Array<int> arr{10};
+        for (int II = 0; II < arr.size; II++)
+        {
+            arr[II] = II + 1;
+        }
+        cout << arr.toString() << endl;
+        cout << arr[0] << endl; 
+        cout << "Using assignment operator to make a copy of that array. " << endl; 
+        Array<int> arr2 = arr; 
+        cout << arr2.toString() << endl; 
+        cout << "Mutating the copied array and then print both of them out. " << endl; 
+        arr2[0] = -1; 
+        cout << arr.toString() << endl; 
+        cout << arr2.toString() << endl; 
+
     }
 }
 
