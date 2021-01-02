@@ -11,12 +11,10 @@
 
 using namespace std;
 
-
 void test();
 map<string, int> counter(string&);
 map<string, int>* another_counter(string&);
 template<class T> T add_2_things(T, T);
-
 
 int main()
 {
