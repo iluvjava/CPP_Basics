@@ -23,9 +23,9 @@ namespace DataStructureClasses
 	template <typename T>
 	class DynamicArray
 	{
-		int Length;
-		int MaxSize;
-		Array<T>* data;
+		int Length;  // in the class. 
+		int MaxSize; // in the class. 
+		Array<T>* DataArray;  // in the heap. 
 		void automaticResize();
 		public:
 			DynamicArray(int initialSize)
@@ -34,7 +34,7 @@ namespace DataStructureClasses
 				{
 					throw(335);
 				}
-				this->data = new Array<T>(initialSize);
+				this->DataArray = new Array<T>(initialSize);
 				this->MaxSize = initialSize;
 				this->Length = 0;
 			}
@@ -45,10 +45,9 @@ namespace DataStructureClasses
 			}
 			~DynamicArray()
 			{
-				delete data;
 			}
 			
-			void append(T& element);
+			void append(const T& element);
 			T& pop(int idx);
 			void insert(int idx);
 			std::string toString();
@@ -61,30 +60,41 @@ namespace DataStructureClasses
 	{
 		if (Length == MaxSize)
 		{
-			T* destination = new T[2 * MaxSize];
-			memcpy(destination, this->data->data, sizeof(destination[0]) * 2 * MaxSize);
+			Array<T>* NewArr = new Array<T>( 2 * MaxSize );
+			Array<T> OldArr = *DataArray;
+			for (int II = 0; II < OldArr.size; II++)
+			{
+				(*NewArr)[II] = OldArr[II];
+			}
 			this->MaxSize = 2 * MaxSize;
+			this->DataArray = NewArr;
 			return;
 		}
-		if (4 * Length < MaxSize)
-		{
-			T* destination = new T[MaxSize / 2]; 
-			memcpy(destination, this->data -> data, sizeof(destination[0]) * MaxSize / 4);
-			this -> MaxSize = MaxSize / 4; 
-		}	
 	}
 
 	template<typename T>
-	inline void DynamicArray<T>::append(T& element)
+	inline void DynamicArray<T>::append(const T& element)
 	{
 		automaticResize();
-		this->data[++Length] = element;
+		this->DataArray[Length++] = element;
 	}
 
 	template<typename T>
 	inline T& DynamicArray<T>::pop(int idx)
 	{
 		automaticResize();
+		if (idx >= this->Length || idx <= 1)
+		{
+			throw (111); // index out of range error. 
+		}
+
+		T elementPopped = DataArray[idx]; // should be a deep copy of that element. 
+		for (int II = idx; II < this->Length - 1; II++)
+		{
+			DataArray[idx] = DataArray[idx + 1]; 
+		}
+		this->Length--;
+		return elementPopped;
 	}
 
 	template<typename T>
@@ -96,7 +106,14 @@ namespace DataStructureClasses
 	template<typename T>
 	inline std::string DynamicArray<T>::toString()
 	{
-		return std::string("not yet implemented");
+		using namespace std; 
+		string s{}; 
+		s += "[";
+		for (int II = 0; II < this->Length; II++)
+		{
+			s += to_string((*DataArray)[II]) + " ";
+		}
+		return s + "]";
 	}
 
 

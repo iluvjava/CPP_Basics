@@ -1,3 +1,7 @@
+#include "..\CPP2\Array.h"
+#include "..\CPP2\Array.h"
+#include "..\CPP2\Array.h"
+#include "..\CPP2\Array.h"
 #pragma once
 
 #include <string>
@@ -20,6 +24,11 @@ namespace DataStructureClasses
 			T* data;
 
 		public:
+			Array()
+			{
+				this->data = new T[0];
+				this->size = 0;
+			}
 			Array(int size)               // ctor
 			{
 				this->data = new T[size]; // in the heap 
@@ -28,7 +37,8 @@ namespace DataStructureClasses
 			~Array() // dtor
 			{
 				delete[] this->data;      // Default destructor won't delete the array from heap, maual deletion is needed. 
-			};
+			}
+			
 			Array(const Array<T>& anotherArray) // cctor
 			{
 				this->data = new T[anotherArray.size];

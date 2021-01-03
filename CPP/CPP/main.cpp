@@ -75,11 +75,13 @@ int main()
     {
         cout << "Ok, now we are going to start messing with the dynamic array. " << endl; 
         DynamicArray<int> arr{ 2 };
-        for (int II = 0; II < arr.size(); II++)
+        for (int II = 0; II < 10; II++)
         {
             arr.append(II);
         }
+        cout << arr.toString() << endl;
     }
+    return 0; 
 }
 
 void test() 
