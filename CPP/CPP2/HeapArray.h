@@ -4,12 +4,12 @@ namespace MyDataStructures
 {
 
 	/*
-		Stores a pointer to an array of pointers; and other things to help with this. 
+		Stores a pointer to an array of pointers pointing to the heap; and other things to help with this. 
 
 		Constructors: 
 			1. Default constructors: Empty array. 
-			2. Array(int): Create an array of NULLs with a given size, allocated in heap. 
-			3. Array(Array<T>&, const int&): 
+			2. HeapArray(int): Create an array of NULLs with a given size, allocated in heap. 
+			3. HeapArray(HeapArray<T>&, const int&): 
 				Given an old array, and a new size, move everything in old array to this new array.
 				NOTE: The old array will be full of NULLs, because the new array must take ownership of the 
 				old one. 
@@ -35,34 +35,34 @@ namespace MyDataStructures
 			delete that in OTHER PLACES. 
 	*/
 	template<typename T>
-	class Array
+	class HeapArray
 	{
 		unsigned int MaxSize; 
 		T** DataBlock; 
-		bool DataBlockOwnerShip = true;
 		public: 
-			Array():Array<T>{0} {};
-			Array(const int&);
-			Array(Array<T>&, const int&);
-			~Array() {delete[] DataBlock;};
+			HeapArray() = delete;
+			HeapArray(const HeapArray<T>&) = delete;
+			HeapArray(const int&);
+			HeapArray(HeapArray<T>&, const int&);
+			~HeapArray() { for (int II = 0; II < MaxSize; II++)delete DataBlock[II]; delete[] DataBlock; };
 			T& operator [] (const int&);
 			std::string toString();
 			int size() { return MaxSize;};
 			void set(const int&, T*);
-			void set(const int&, T&); 
+			void set(const int&, T&);
 	};
 	
 	template<typename T>
-	inline T& MyDataStructures::Array<T>::operator[](const int& index)
+	inline T& MyDataStructures::HeapArray<T>::operator[](const int& index)
 	{
 		if (index < 0 || index >= this->MaxSize) throw(111); 
 		T TheData = (*DataBlock)[index];
 		if ((*DataBlock)[index] == NULL) throw (112);
-		return TheData; 
+		return TheData;
 	}
 
 	template<typename T>
-	inline MyDataStructures::Array<T>::Array(const int& initialLength)
+	inline MyDataStructures::HeapArray<T>::HeapArray(const int& initialLength)
 	{
 		this->MaxSize = initialLength;
 		T** TheArray = new T * [initialLength] {NULL};
@@ -70,17 +70,17 @@ namespace MyDataStructures
 	}
 
 	template<typename T>
-	inline Array<T>::Array(Array<T>& oldArray, const int& newArraySize) : Array<T>{newArraySize}
+	inline HeapArray<T>::HeapArray(HeapArray<T>& oldArray, const int& newArraySize) : HeapArray<T>{newArraySize}
 	{
 		for (unsigned int II = 0; II < oldArray.size(); II++)
 		{
 			DataBlock[II] = oldArray.DataBlock[II];
-			oldArray.DataBlock[II] = NULL; 
+			oldArray.DataBlock[II] = NULL;
 		}
 	}
 	
 	template<typename T>
-	inline std::string MyDataStructures::Array<T>::toString()
+	inline std::string MyDataStructures::HeapArray<T>::toString()
 	{
 		using namespace std;
 		string s{};
@@ -103,13 +103,14 @@ namespace MyDataStructures
 	}
 	
 	template<typename T>
-	inline void Array<T>::set(const int& index, T* data)
+	inline void HeapArray<T>::set(const int& index, T* data)
 	{
-		if (index < 0 || index >= MaxSize) throw(111); 
+		if (index < 0 || index >= MaxSize) throw(111);
 		DataBlock[index] = data;
 	}
+
 	template<typename T>
-	inline void Array<T>::set(const int& index , T& data)
+	inline void HeapArray<T>::set(const int& index , T& data)
 	{
 		if (index < 0 || index >= MaxSize) throw(111);
 		DataBlock[index] = &data;

@@ -147,12 +147,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array.cpp" />
+    <ClCompile Include="HeapArray.cpp" />
     <ClCompile Include="CPP2.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h" />
+    <ClInclude Include="HeapArray.h" />
     <ClInclude Include="DynamicArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

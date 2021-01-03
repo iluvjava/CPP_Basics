@@ -22,6 +22,8 @@ When using the `new` keyword, **ownership of the pointers must be very very clea
 If `new` used, then use `delete` on it, ONCE ONLY.
 if `new[]` used, or array contains pointers to elements invoked using `new`, then `delete[]` is expected. 
 
+**Set pointers to NULL after deletion.**
+
 ---
 #### What is difference between new MyClass[?] and new MyClass? 
 
@@ -68,3 +70,5 @@ MyClass t1, t2;  // invokes default constructors.
 Myclass t3 = t2  // invokes copy constructor on t2 and move reference to t3.
 t2 = t1          // invokes default constructor and then invokes `operator`.
 ```
+
+Move assignment operator is deleted if the default ctor is not there, the same for copy constructor. 

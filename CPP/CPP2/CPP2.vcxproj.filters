@@ -18,18 +18,18 @@
     <ClCompile Include="CPP2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Array.cpp">
+    <ClCompile Include="DynamicArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicArray.cpp">
+    <ClCompile Include="HeapArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Array.h">
+    <ClInclude Include="DynamicArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicArray.h">
+    <ClInclude Include="HeapArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
