@@ -72,3 +72,52 @@ t2 = t1          // invokes default constructor and then invokes `operator`.
 ```
 
 Move assignment operator is deleted if the default ctor is not there, the same for copy constructor. 
+
+---
+### Smart Pointers: `std::unique_ptr`, `std::shared_ptr`
+
+A smart pointer is a pointer that can help programmer to prevent the ownership problem, hence preventing the double free error. 
+
+Motivations:
+
+  * This is needed becaues copying a lot of data is expensive, that is why a reference to the heap memory will be very useful if that thing is a handle, or it's using a lot of resources.
+
+Scenarios:
+  
+  * Assuming multiple instances of class is sharing a pointer with the same memory address.
+
+  * This is a problem because if we don't delete it, then it's a memory leak, if we delete it, then we will have double free, because the pointer (the handle) are shared in different instances of classes.
+
+Solutions:
+  * The `unique_ptr`; 
+    
+    * The unique pointer is a pointer that can be references by one instance of the class at a time, and moved around (transfer of ownership). Once it's moved, the original instance of the `unique_ptr` is given a `NULL`. 
+    
+    * `std::unique_ptr<T> newptr = std::move(oldptr)`. After this line of code, the `oldptr` will have NULL when `.get()` is evoked on it. 
+    
+    *  `auto z = std::unique_ptr<int>(new int{0})`, and when: `z = unique_ptr<int>(new int{10})`, the oritinal value it refers to will be deleted, because of the rule for `=` opertor. The same thing happens when the `std::move` is passed into it. 
+
+    * The ordering of the `unique_ptr`:
+      
+      * Take notice that, the `unique_ptr` is sorted by the value of the pointer in the memoery, **it's not the value of whatever the pointer is referring to.** So whenvever the ordering of the element it holds is needed, please customizer your comparator for STL datastructures.
+      * The same goes for `shared_ptr`.
+
+  * The `shared_ptr`; 
+    
+    * This `shared_ptr` allows for multiple instances of the clas to hold a reference to a value. And they will be refering to the same value. When all of the goes out of scope, the value will be automatically deleted. 
+    
+    * Take not that, if there are **Circular Refernces**, then it will cause a **Memory Leak.**
+    
+    * Just use it as a java references, and avoid circular references. 
+
+  * The `weak_pointer`; 
+
+    * A `weak_pointer` can only ponts to a pointer that is managed by a `shared_pointer`. 
+
+    * Only the weak_pointer for a node that is at the junction of the circular reference. 
+
+    * THis is used to the eliminate cyclic refernces when using `shared_ptr` and it will help with the memory management when: 
+      * You know ther is a cyclic reference and you know which node is going to be the junction node. 
+
+    
+

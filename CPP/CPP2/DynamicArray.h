@@ -5,14 +5,16 @@ namespace MyDataStructures {
 	
 	/*
 		A dynamic array that take care of all the pointers that references to objects. 
+
 		Exception Code: 
 			111: Index out of arange. 
+			333: Invalid capacity.
 	*/
 	template <typename T>
 	
 	class DynamicArray {
 		int MaxSize; 
-		int Count = 0; 
+		unsigned int Count = 0; 
 		T** DataBlock;
 		bool* ToDestruct;
 		void resize();
@@ -21,7 +23,7 @@ namespace MyDataStructures {
 			DynamicArray(const int&);
 			~DynamicArray() {
 				for (unsigned int II = 0; II < Count; II++)
-					if (ToDestruct[II])delete DataBlock[II];
+					if (ToDestruct[II]) delete DataBlock[II];
 				delete[] DataBlock;
 				delete[] ToDestruct; 
 			};
@@ -29,6 +31,7 @@ namespace MyDataStructures {
 			void insert(T*, int, bool = true);
 			T* pop(int);
 			std::string toString();
+			DynamicArray<T>& operator =(const DynamicArray<T>&) = delete;
 	};
 
 	template<typename T>
@@ -54,6 +57,7 @@ namespace MyDataStructures {
 	template<typename T>
 	inline DynamicArray<T>::DynamicArray(const int& initialSize)
 	{
+		if (initialSize <= 0) throw (333);
 		DataBlock = new T*[initialSize];
 		ToDestruct = new bool[initialSize];
 		MaxSize = initialSize;
@@ -83,6 +87,7 @@ namespace MyDataStructures {
 	template<typename T>
 	inline T* DynamicArray<T>::pop(int index)
 	{
+		if (index < 0 || index >= Count) throw (111);
 		T* popped = DataBlock[index];
 		for (unsigned int II = index; II < Count; II++)
 		{

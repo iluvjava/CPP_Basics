@@ -150,10 +150,14 @@
     <ClCompile Include="HeapArray.cpp" />
     <ClCompile Include="CPP2.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
+    <ClCompile Include="MultableDynamicArray.cpp" />
+    <ClCompile Include="SimpleArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HeapArray.h" />
     <ClInclude Include="DynamicArray.h" />
+    <ClInclude Include="MultableDynamicArray.h" />
+    <ClInclude Include="SimpleArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

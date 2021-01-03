@@ -5,6 +5,7 @@
 #include <vector>
 #include "HeapArray.h"
 #include "DynamicArray.h"
+#include "JavaStyleArray.h"
 
 int main()
 {
@@ -27,10 +28,11 @@ int main()
         cout << "And this is old array, pointers should be transferred: " << endl; 
         cout << Arr.toString() << endl; 
     }
-
+   
+    cout << "Creating a dynamic array. " << endl;
+    DynamicArray<int> darr{ 1 };
     {
-        cout << "Creating a dynamic array. " << endl; 
-        DynamicArray<int> darr{1};
+       
         cout << darr.toString() << endl; 
 
         cout << "appending element from dynamic mem" << endl; 
@@ -58,6 +60,9 @@ int main()
 
     }
 
+    cout << "Dynamic array are outside of scope, let's see what happened: " << endl; 
+    cout << darr.toString() << endl;
+
     {
         cout << "Passing pointers to vector" << endl; 
         vector<int*> vec{};
@@ -70,6 +75,31 @@ int main()
             cout << *element << endl; 
         }
         cout << "There are like, one address in forloop, all pointing to the last iterative value." << endl;
+
+    }
+
+    {
+        cout << "Let's try something on the smart pointers" << endl; 
+        unique_ptr<int> x(new int{ 5 }); 
+        cout << "x: " << to_string(*x) << endl; 
+        cout << "Moving unique_ptr ownership from x to y. " << endl; 
+        unique_ptr<int> y(move(x)); 
+        cout << "x (Ptr value): " << x.get()<< endl; 
+        cout << "y: " << to_string(*y) << endl; 
+    }
+
+    {
+        cout << "Testing simple array" << endl; 
+        SimpleArray<int> arr{ 10 };
+        for (int II = 0; II < 10; II++)
+        {
+            arr.DataBlock[II] = new int{ II + 1};
+        }
+
+        for (int II = 0; II < 10; II++)
+        {
+            cout << to_string(*(arr.DataBlock[II])) << endl; 
+        }
 
     }
 
