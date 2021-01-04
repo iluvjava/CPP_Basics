@@ -6,6 +6,7 @@
 #include "HeapArray.h"
 #include "DynamicArray.h"
 #include "JavaStyleArray.h"
+#include "Capsule.h"
 
 int main()
 {
@@ -100,8 +101,27 @@ int main()
         {
             cout << to_string(*(arr.DataBlock[II])) << endl; 
         }
+    }
+
+
+    {
+        shared_ptr<int> x = shared_ptr<int>();
+        cout << x.get() << endl; 
 
     }
+
+   /*{
+        CapsuleDynamicArray<int> arr = CapsuleDynamicArray<int>{};
+        for (int II = 0; II < 20; II++)
+        {
+            arr.Append(*(new int{II + 1}));
+        }
+        for (int II = 0; II < 20; II++)
+        {
+            cout << arr.pop(0) << endl; 
+        }
+
+    }*/
 
 
 

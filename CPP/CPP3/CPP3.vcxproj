@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{4C59CDF3-AADF-42AE-859E-689401E1C62B}</ProjectGuid>
+    <ProjectGuid>{32A31722-3800-4556-A1B4-CF2846EDC497}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>CPP2</RootNamespace>
+    <RootNamespace>CPP3</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,19 +147,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HeapArray.cpp" />
-    <ClCompile Include="CPP2.cpp" />
+    <ClCompile Include="CPP3.cpp" />
     <ClCompile Include="DynamicArray.cpp" />
-    <ClCompile Include="MultableDynamicArray.cpp" />
-    <ClCompile Include="SimpleArray.cpp" />
-    <ClCompile Include="TypeCapsule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HeapArray.h" />
     <ClInclude Include="DynamicArray.h" />
-    <ClInclude Include="MultableDynamicArray.h" />
-    <ClInclude Include="SimpleArray.h" />
-    <ClInclude Include="Capsule.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

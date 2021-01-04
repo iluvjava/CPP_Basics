@@ -6,6 +6,10 @@ namespace MyDataStructures {
 	/*
 		A dynamic array that take care of all the pointers that references to objects. 
 
+		Copy Constructor: 
+			* Copy constructor is called on each element inside of the array as it moved to the new 
+			array. 
+
 		Exception Code: 
 			111: Index out of arange. 
 			333: Invalid capacity.
@@ -21,6 +25,7 @@ namespace MyDataStructures {
 		public: 
 			DynamicArray() = delete;
 			DynamicArray(const int&);
+			DynamicArray(const DynamicArray<T>&);
 			~DynamicArray() 
 			{
 				for (unsigned int II = 0; II < Count; II++)
@@ -33,6 +38,7 @@ namespace MyDataStructures {
 			T* pop(int);
 			std::string toString();
 			DynamicArray<T>& operator = (const DynamicArray<T>&)=delete;
+			T& operator [](int);
 	};
 
 	template<typename T>
@@ -62,6 +68,19 @@ namespace MyDataStructures {
 		DataBlock = new T*[initialSize];
 		ToDestruct = new bool[initialSize];
 		MaxSize = initialSize;
+	}
+
+	template<typename T>
+	inline DynamicArray<T>::DynamicArray(const DynamicArray<T>& otherArray)
+	{
+		MaxSize = otherArray.MaxSize; 
+		Count = otherArray.Count; 
+		DataBlock = new T * [MaxSize] {nullptr};
+		ToDestruct = new bool[MaxSize] {true}; // all elements in the new array are created via 'new'. 
+		for (unsigned int II = 0; II < Count; II++)
+		{
+			DataBlock[II] = new T{*otherArray.DataBlock[II]};
+		}
 	}
 
 	template<typename T>
@@ -127,6 +146,22 @@ namespace MyDataStructures {
 		}
 		return s + "]";
 	}
+
+	template<typename T>
+	inline T& DynamicArray<T>::operator[](int index)
+	{
+		if (index < 0 || index >= Count) throw (111);
+		return *(DataBlock[index]); 
+	}
+
+
+	template<typename T>
+	class MultibleDynamicArray
+	{
+
+
+
+	};
 
 	
 

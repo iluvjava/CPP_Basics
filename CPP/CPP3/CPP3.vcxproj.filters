@@ -15,39 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CPP2.cpp">
+    <ClCompile Include="CPP3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DynamicArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HeapArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MultableDynamicArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TypeCapsule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HeapArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MultableDynamicArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Capsule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

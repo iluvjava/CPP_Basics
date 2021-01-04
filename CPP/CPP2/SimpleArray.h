@@ -36,7 +36,7 @@ namespace MyDataStructures {
 			delete[] DataBlock;
 			DataBlock = NewDataBlock;
 		}
-		private: int MaxSize;
+		private: unsigned int MaxSize;
 		
 	};
 
