@@ -64,3 +64,9 @@ lldb a.out
 
 type `up`
 
+
+**Testing Frameworks** 
+
+* google tests suit, can be integrated with CMAKE
+* catch2. [link](https://github.com/catchorg/Catch2)
+
