@@ -1,0 +1,15 @@
+# Compile another version that can be put into the debugger.
+# envoke with `make -f MakfileDebug`
+
+
+COMPILER = c++
+FLAGS = -DNDBUG -g -DMAKE_BUG
+
+all: main.out
+
+headers.o: headers.h headers.cpp
+	$(COMPILER) $(FLAGS) -c $^
+
+main.out: main.cpp headers.o
+	$(COMPILER) $(FLAGS) $^ -o $@
+
