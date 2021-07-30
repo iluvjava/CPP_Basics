@@ -19,11 +19,11 @@
 
 **Phase of Translation**: [here](https://en.cppreference.com/w/cpp/language/translation_phases)
 
-
-
+---
 # Topics
 
 * Pre-Processor
+* Debugger
 
 ### **Pre-Processor**: 
 
@@ -46,6 +46,8 @@ For more Fun Fact about Compiler flags that are related to the Pre-Processor, vi
 Why? 
 
 Flags, `NDEBUG` can enable or disable the assert features. To use  assert feature, do `#include <assert.h>`. 
+
+### **Debugger**
 
 What are some of the debugger out there? 
 
